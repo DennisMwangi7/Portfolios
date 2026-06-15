@@ -13,7 +13,6 @@ html { scroll-behavior: smooth; }
 :root {
   --bg: #0a0a0f;
   --bg2: #0f0f18;
-  --bg3: #13131e;
   --card: #16161f;
   --card-border: #2a2a3a;
   --gold: #c9a84c;
@@ -32,13 +31,10 @@ body {
   overflow-x: hidden;
 }
 
-/* CANVAS STARS */
 #stars-canvas {
-  position: fixed;
-  top: 0; left: 0;
+  position: fixed; top: 0; left: 0;
   width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
 /* NAV */
@@ -63,26 +59,23 @@ nav {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
-/* SECTION WRAPPER */
-section, .section-wrap {
-  position: relative; z-index: 1;
-}
-
 /* HERO */
 #about {
   min-height: 100vh;
   padding: 0 5rem;
   display: flex; align-items: center;
   padding-top: 60px;
+  position: relative; z-index: 1;
 }
 .hero-inner {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 4rem;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
+  padding-top: 3rem;
 }
 .hero-left { max-width: 560px; }
 .hero-badge {
@@ -93,12 +86,14 @@ section, .section-wrap {
   font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 2rem;
 }
-.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: block; }
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--gold); display: block;
+}
 .hero-name {
   font-family: 'Playfair Display', serif;
   font-size: clamp(3.5rem, 6vw, 6rem);
-  line-height: 1.0;
-  margin-bottom: 1rem;
+  line-height: 1.0; margin-bottom: 1rem;
 }
 .hero-name .first { color: var(--white); font-weight: 700; }
 .hero-name .last { color: var(--gold); font-style: italic; font-weight: 400; display: block; }
@@ -117,8 +112,7 @@ section, .section-wrap {
   padding: 0.75rem 1.8rem;
   font-family: 'Space Mono', monospace;
   font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: background 0.2s;
+  text-decoration: none; transition: background 0.2s; display: inline-block;
 }
 .btn-gold:hover { background: var(--gold-light); }
 .btn-ghost {
@@ -129,10 +123,9 @@ section, .section-wrap {
   text-decoration: none; transition: border-color 0.2s, color 0.2s;
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
-.hero-stats { display: flex; gap: 0; }
+.hero-stats { display: flex; }
 .hero-stat {
-  padding: 0 2rem 0 0;
-  margin-right: 2rem;
+  padding-right: 2rem; margin-right: 2rem;
   border-right: 1px solid var(--card-border);
 }
 .hero-stat:last-child { border-right: none; }
@@ -146,26 +139,23 @@ section, .section-wrap {
   color: var(--muted); margin-top: 0.3rem;
 }
 
-/* HERO PHOTO */
-.hero-photo-wrap {
-  position: relative; flex-shrink: 0;
-}
+/* HERO PHOTO - full image, not cropped */
+.hero-photo-wrap { position: relative; flex-shrink: 0; }
 .hero-photo {
-  width: 320px; height: 420px;
-  object-fit: cover; object-position: center top;
+  width: 340px;
+  height: auto;
   display: block;
   border: 1px solid var(--card-border);
-  filter: grayscale(15%);
 }
 .hero-avail-tag {
-  position: absolute; bottom: -1px; left: 0;
+  position: absolute; bottom: 0; left: 0;
   background: var(--gold); color: #0a0a0f;
   font-family: 'Space Mono', monospace;
   font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
   padding: 0.4rem 0.9rem;
 }
 
-/* ABOUT SECTION */
+/* ABOUT DETAIL */
 #about-detail {
   position: relative; z-index: 1;
   padding: 6rem 5rem;
@@ -189,12 +179,8 @@ section, .section-wrap {
   line-height: 1.15; margin-bottom: 2rem;
 }
 .about-headline em { color: var(--gold); font-style: italic; }
-.about-p {
-  font-size: 0.95rem; line-height: 1.85;
-  color: #9090b0; margin-bottom: 1.2rem;
-}
-.about-p:last-child { margin-bottom: 0; }
-.detail-sidebar { display: flex; flex-direction: column; gap: 0; }
+.about-p { font-size: 0.95rem; line-height: 1.85; color: #9090b0; margin-bottom: 1.2rem; }
+.detail-sidebar { display: flex; flex-direction: column; }
 .detail-row {
   border-left: 2px solid var(--gold-dim);
   padding: 1.1rem 1.4rem;
@@ -221,13 +207,10 @@ section, .section-wrap {
 .exp-header { max-width: 1200px; margin: 0 auto 4rem; }
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
-  line-height: 1.1;
+  font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: 1.1;
 }
 .section-title em { color: var(--gold); font-style: italic; font-weight: 400; }
 .title-rule { width: 40px; height: 2px; background: var(--gold); margin-top: 1rem; }
-
-/* TIMELINE */
 .timeline {
   max-width: 1200px; margin: 0 auto;
   display: flex; flex-direction: column; gap: 5rem;
@@ -239,7 +222,7 @@ section, .section-wrap {
   width: 1px; background: var(--card-border);
 }
 .tl-item { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; position: relative; }
-.tl-meta { text-align: right; padding-right: 0; position: relative; }
+.tl-meta { text-align: right; position: relative; }
 .tl-dot {
   position: absolute; right: -3.55rem; top: 0.35rem;
   width: 10px; height: 10px; border-radius: 50%;
@@ -248,8 +231,7 @@ section, .section-wrap {
 }
 .tl-dates {
   font-family: 'Space Mono', monospace;
-  font-size: 0.7rem; letter-spacing: 0.08em;
-  color: var(--gold); margin-bottom: 0.5rem;
+  font-size: 0.7rem; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.5rem;
 }
 .tl-company { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.2rem; }
 .tl-loc { font-size: 0.82rem; color: var(--muted); }
@@ -264,14 +246,12 @@ section, .section-wrap {
   padding-left: 1.2rem; position: relative; margin-bottom: 0.5rem;
 }
 .tl-bullets li::before {
-  content: '';
-  position: absolute; left: 0; top: 0.7rem;
+  content: ''; position: absolute; left: 0; top: 0.7rem;
   width: 5px; height: 1px; background: var(--gold);
 }
 .tl-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .tl-tag {
-  border: 1px solid var(--card-border);
-  color: var(--muted);
+  border: 1px solid var(--card-border); color: var(--muted);
   padding: 0.3rem 0.8rem;
   font-family: 'Space Mono', monospace;
   font-size: 0.65rem; letter-spacing: 0.08em;
@@ -285,75 +265,73 @@ section, .section-wrap {
   border-top: 1px solid var(--card-border);
 }
 .skills-inner { max-width: 1200px; margin: 0 auto; }
-.skills-grid {
+
+/* Core Skills grid */
+.core-skills-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem; margin-top: 3.5rem; margin-bottom: 4rem;
+  gap: 0.6rem; margin-top: 2rem; margin-bottom: 4rem;
 }
-.skill-card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  padding: 2rem 1.5rem;
-  transition: border-color 0.2s;
-}
-.skill-card:hover { border-color: var(--gold-dim); }
-.sc-cat {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1.2rem;
-  padding-bottom: 0.8rem; border-bottom: 1px solid var(--card-border);
-}
-.sc-list { list-style: none; }
-.sc-list li {
-  font-size: 0.87rem; color: #9090b0;
-  padding: 0.4rem 0; border-bottom: 1px solid rgba(42,42,58,0.5);
-  padding-left: 0.8rem; position: relative;
-}
-.sc-list li:last-child { border-bottom: none; }
-.sc-list li::before {
-  content: '';
-  position: absolute; left: 0; top: 50%;
-  width: 4px; height: 1px; background: var(--gold-dim);
-}
-
-/* COMPETENCIES */
-.comp-label { eyebrow; }
-.comp-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.8rem; margin-top: 1.5rem;
-}
-.comp-item {
+.core-skill-item {
   border: 1px solid var(--card-border);
   background: var(--card);
-  padding: 1rem 1.2rem;
+  padding: 0.85rem 1rem;
   display: flex; align-items: center; gap: 0.7rem;
   font-size: 0.85rem; color: var(--white);
 }
-.comp-item::before {
+.core-skill-item::before {
   content: '';
-  width: 6px; height: 6px;
+  width: 6px; height: 6px; flex-shrink: 0;
   border: 1px solid var(--gold); transform: rotate(45deg);
-  flex-shrink: 0;
 }
 
-/* TECH SECTION */
-.tech-section { margin-top: 3.5rem; }
+/* Technical Skills - grouped */
+.tech-section { margin-bottom: 4rem; }
 .tech-groups {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 2rem; margin-top: 1.5rem;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2rem; margin-top: 2rem;
 }
-.tech-group-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--gold-dim); margin-bottom: 0.8rem;
-}
-.tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.tech-tag {
+.tech-group {
+  background: var(--card);
   border: 1px solid var(--card-border);
-  color: var(--muted);
-  padding: 0.25rem 0.65rem;
-  font-size: 0.75rem;
+  padding: 1.8rem;
+}
+.tech-group-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+  padding-bottom: 0.8rem; border-bottom: 1px solid var(--card-border);
+}
+.tech-list { list-style: none; }
+.tech-list li {
+  font-size: 0.87rem; color: #9090b0;
+  padding: 0.35rem 0 0.35rem 0.9rem;
+  border-bottom: 1px solid rgba(42,42,58,0.5);
+  position: relative;
+}
+.tech-list li:last-child { border-bottom: none; }
+.tech-list li::before {
+  content: ''; position: absolute; left: 0; top: 50%;
+  width: 4px; height: 1px; background: var(--gold-dim);
+}
+
+/* Additional Qualifications */
+.addl-section { margin-top: 0; }
+.addl-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem; margin-top: 2rem;
+}
+.addl-item {
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  padding: 1.1rem 1.3rem;
+  font-size: 0.87rem; color: #9090b0;
+  display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.5;
+}
+.addl-item::before {
+  content: ''; flex-shrink: 0;
+  width: 6px; height: 6px; margin-top: 0.35rem;
+  border: 1px solid var(--gold); transform: rotate(45deg);
 }
 
 /* EDUCATION */
@@ -371,8 +349,7 @@ section, .section-wrap {
 .edu-card {
   background: var(--card);
   border: 1px solid var(--card-border);
-  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
-  position: relative; overflow: hidden;
+  padding: 2.5rem; position: relative; overflow: hidden;
 }
 .edu-year-bg {
   position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
@@ -385,9 +362,7 @@ section, .section-wrap {
   font-family: 'Playfair Display', serif;
   font-size: 1.4rem; color: var(--white); margin-bottom: 0.4rem;
 }
-.edu-field {
-  font-size: 0.9rem; color: var(--gold); margin-bottom: 1.2rem;
-}
+.edu-field { font-size: 0.9rem; color: var(--gold); margin-bottom: 1.2rem; }
 .edu-school { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 .edu-graduated {
   font-family: 'Space Mono', monospace;
@@ -406,26 +381,20 @@ section, .section-wrap {
 .contact-inner { max-width: 900px; margin: 0 auto; }
 .contact-bio {
   font-size: 0.97rem; line-height: 1.85;
-  color: #9090b0; max-width: 640px;
-  margin: 2rem auto 3rem;
+  color: #9090b0; max-width: 640px; margin: 2rem auto 3rem;
 }
 .contact-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem; margin-bottom: 1.2rem;
 }
 .contact-card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  padding: 1.8rem 1.5rem;
-  text-decoration: none;
+  background: var(--card); border: 1px solid var(--card-border);
+  padding: 1.8rem 1.5rem; text-decoration: none;
   transition: border-color 0.2s;
   display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
 }
 .contact-card:hover { border-color: var(--gold-dim); }
-.cc-icon {
-  font-size: 1.4rem; margin-bottom: 0.3rem;
-}
+.cc-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
 .cc-label {
   font-family: 'Space Mono', monospace;
   font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
@@ -434,7 +403,6 @@ section, .section-wrap {
 .cc-val { font-size: 0.88rem; color: var(--white); }
 .cc-val.green { color: var(--green); }
 .contact-card-single {
-  display: grid; grid-template-columns: 1fr;
   max-width: 320px; margin: 0 auto 2.5rem;
 }
 .contact-btn-wrap { margin-top: 0.5rem; }
@@ -442,24 +410,20 @@ section, .section-wrap {
 /* FOOTER */
 footer {
   position: relative; z-index: 1;
-  background: #07070f;
-  text-align: center; padding: 1.5rem;
+  background: #07070f; text-align: center; padding: 1.5rem;
   font-family: 'Space Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.1em;
-  color: var(--muted);
+  font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted);
   border-top: 1px solid var(--card-border);
 }
 footer a { color: var(--gold); text-decoration: none; }
 
-/* SCROLL INDICATOR */
 .scroll-indicator {
   position: fixed; right: 2rem; bottom: 2rem; z-index: 50;
   width: 36px; height: 36px; border-radius: 50%;
   border: 1px solid var(--gold-dim);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; background: rgba(10,10,15,0.8);
-  color: var(--gold); font-size: 0.7rem;
-  text-decoration: none;
+  color: var(--gold); font-size: 0.7rem; text-decoration: none;
   transition: border-color 0.2s;
 }
 .scroll-indicator:hover { border-color: var(--gold); }
@@ -467,9 +431,10 @@ footer a { color: var(--gold); text-decoration: none; }
 /* RESPONSIVE */
 @media (max-width: 1000px) {
   nav { padding: 0 1.5rem; }
+  .nav-links { gap: 1.2rem; }
   #about { padding: 80px 2rem 3rem; }
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-photo { width: 100%; height: 280px; }
+  .hero-photo { width: 100%; }
   #about-detail { padding: 4rem 2rem; }
   .about-inner { grid-template-columns: 1fr; }
   #experience { padding: 4rem 2rem; }
@@ -479,9 +444,9 @@ footer a { color: var(--gold); text-decoration: none; }
   .tl-dot { display: none; }
   .tl-content { padding-left: 0; }
   #skills { padding: 4rem 2rem; }
-  .skills-grid { grid-template-columns: 1fr 1fr; }
-  .comp-grid { grid-template-columns: 1fr 1fr; }
-  .tech-groups { grid-template-columns: 1fr 1fr; }
+  .core-skills-grid { grid-template-columns: 1fr 1fr; }
+  .tech-groups { grid-template-columns: 1fr; }
+  .addl-grid { grid-template-columns: 1fr 1fr; }
   #education { padding: 4rem 2rem; }
   .edu-grid { grid-template-columns: 1fr; }
   #contact { padding: 4rem 2rem; }
@@ -543,7 +508,7 @@ footer a { color: var(--gold); text-decoration: none; }
 </section>
 
 <!-- ABOUT DETAIL -->
-<div id="about-detail">
+<div id="about-detail" style="position:relative;z-index:1;">
   <div class="about-inner">
     <div>
       <p class="eyebrow">Who I Am</p>
@@ -585,11 +550,10 @@ footer a { color: var(--gold); text-decoration: none; }
     <div class="title-rule"></div>
   </div>
   <div class="timeline">
-
     <div class="tl-item">
       <div class="tl-meta">
         <div class="tl-dot"></div>
-        <p class="tl-dates">Apr 2019 &mdash; Present</p>
+        <p class="tl-dates">Apr 2019 &ndash; Present</p>
         <p class="tl-company">Beacon Health System</p>
         <p class="tl-loc">South Bend, Indiana</p>
       </div>
@@ -613,11 +577,10 @@ footer a { color: var(--gold); text-decoration: none; }
         </div>
       </div>
     </div>
-
     <div class="tl-item">
       <div class="tl-meta">
         <div class="tl-dot"></div>
-        <p class="tl-dates">Jun 2013 &mdash; Mar 2019</p>
+        <p class="tl-dates">Jun 2013 &ndash; Mar 2019</p>
         <p class="tl-company">Comcast</p>
         <p class="tl-loc">Mishawaka, Indiana</p>
       </div>
@@ -625,7 +588,7 @@ footer a { color: var(--gold); text-decoration: none; }
         <h3 class="tl-role">Technical Support Specialist</h3>
         <ul class="tl-bullets">
           <li>Delivered customer and technical support for telecommunications services, resolving hardware, software, and account-related challenges.</li>
-          <li>Maintained detailed customer and technical documentation records supporting service continuity and QA processes.</li>
+          <li>Maintained detailed customer and technical documentation records supporting service continuity and quality assurance processes.</li>
           <li>Mapped service areas using GIS toolsets, supporting infrastructure listing and geospatial analysis of coverage zones.</li>
           <li>Assisted users with technology adaptation and implementation, improving adoption rates across service rollouts.</li>
           <li>Supported process quality assurance and fulfilment availability across service delivery workflows.</li>
@@ -639,118 +602,119 @@ footer a { color: var(--gold); text-decoration: none; }
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
   <div class="skills-inner">
-    <p class="eyebrow">Expertise</p>
+
+    <!-- CORE SKILLS -->
+    <p class="eyebrow">Core Skills</p>
     <h2 class="section-title">Skills &amp; <em>Capabilities</em></h2>
     <div class="title-rule"></div>
-
-    <div class="skills-grid">
-      <div class="skill-card">
-        <p class="sc-cat">Systems &amp; IT Operations</p>
-        <ul class="sc-list">
-          <li>Information Systems Support</li>
-          <li>Systems Engineering</li>
-          <li>Technical Troubleshooting</li>
-          <li>Active Directory Administration</li>
-          <li>Healthcare Information Systems</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <p class="sc-cat">GIS &amp; Geospatial</p>
-        <ul class="sc-list">
-          <li>QGIS &amp; ArcGIS Pro</li>
-          <li>ArcGIS Online</li>
-          <li>Google Earth Pro</li>
-          <li>Global Mapper</li>
-          <li>Operational Intelligence Reporting</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <p class="sc-cat">Data &amp; Databases</p>
-        <ul class="sc-list">
-          <li>Microsoft SQL Server</li>
-          <li>PostgreSQL &amp; MySQL</li>
-          <li>Oracle Database</li>
-          <li>Data Analysis &amp; Reporting</li>
-          <li>Business Intelligence</li>
-        </ul>
-      </div>
-      <div class="skill-card">
-        <p class="sc-cat">Analytics &amp; Communication</p>
-        <ul class="sc-list">
-          <li>Power BI &amp; Tableau</li>
-          <li>Microsoft Excel (Advanced)</li>
-          <li>Technical Documentation</li>
-          <li>Research &amp; Analysis</li>
-          <li>Process Improvement</li>
-        </ul>
-      </div>
+    <div class="core-skills-grid">
+      <div class="core-skill-item">Information Systems Support</div>
+      <div class="core-skill-item">Systems Engineering</div>
+      <div class="core-skill-item">Technical Troubleshooting</div>
+      <div class="core-skill-item">Systems Administration</div>
+      <div class="core-skill-item">Data Management</div>
+      <div class="core-skill-item">Database Administration</div>
+      <div class="core-skill-item">Geospatial Data Analysis</div>
+      <div class="core-skill-item">GIS Mapping</div>
+      <div class="core-skill-item">Business Intelligence Reporting</div>
+      <div class="core-skill-item">Process Improvement</div>
+      <div class="core-skill-item">Documentation Management</div>
+      <div class="core-skill-item">Quality Assurance</div>
+      <div class="core-skill-item">Research and Analysis</div>
+      <div class="core-skill-item">Problem Solving</div>
+      <div class="core-skill-item">Communication</div>
+      <div class="core-skill-item">Time Management</div>
     </div>
 
-    <p class="eyebrow">Core Competencies</p>
-    <div class="comp-grid">
-      <div class="comp-item">Systems Administration</div>
-      <div class="comp-item">Geospatial Data Analysis</div>
-      <div class="comp-item">Database Administration</div>
-      <div class="comp-item">Analytical Thinking</div>
-      <div class="comp-item">Problem Solving</div>
-      <div class="comp-item">Business Intelligence</div>
-      <div class="comp-item">Quality Assurance</div>
-      <div class="comp-item">Process Improvement</div>
-      <div class="comp-item">Documentation Management</div>
-      <div class="comp-item">Remote Collaboration</div>
-    </div>
-
+    <!-- TECHNICAL SKILLS -->
     <div class="tech-section">
-      <p class="eyebrow">Technical Toolkit</p>
+      <p class="eyebrow">Technical Skills</p>
       <div class="tech-groups">
-        <div>
-          <p class="tech-group-label">BI &amp; Analytics</p>
-          <div class="tech-tags">
-            <span class="tech-tag">Power BI</span>
-            <span class="tech-tag">Tableau</span>
-            <span class="tech-tag">Excel Advanced</span>
-          </div>
+
+        <div class="tech-group">
+          <p class="tech-group-title">Business Intelligence &amp; Analytics</p>
+          <ul class="tech-list">
+            <li>Microsoft Power BI</li>
+            <li>Tableau</li>
+            <li>Microsoft Excel (Advanced)</li>
+          </ul>
         </div>
-        <div>
-          <p class="tech-group-label">GIS Platforms</p>
-          <div class="tech-tags">
-            <span class="tech-tag">QGIS</span>
-            <span class="tech-tag">ArcGIS Pro</span>
-            <span class="tech-tag">ArcGIS Online</span>
-            <span class="tech-tag">Google Earth Pro</span>
-            <span class="tech-tag">Global Mapper</span>
-          </div>
+
+        <div class="tech-group">
+          <p class="tech-group-title">GIS &amp; Geospatial Analysis</p>
+          <ul class="tech-list">
+            <li>QGIS</li>
+            <li>ArcGIS Pro</li>
+            <li>ArcGIS Online</li>
+            <li>Google Earth Pro</li>
+            <li>Global Mapper</li>
+          </ul>
         </div>
-        <div>
-          <p class="tech-group-label">Databases</p>
-          <div class="tech-tags">
-            <span class="tech-tag">SQL Server</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">MySQL</span>
-            <span class="tech-tag">Oracle</span>
-            <span class="tech-tag">SQL</span>
-          </div>
+
+        <div class="tech-group">
+          <p class="tech-group-title">Database &amp; Information Systems</p>
+          <ul class="tech-list">
+            <li>Microsoft SQL Server</li>
+            <li>SQL Server Management Studio</li>
+            <li>PostgreSQL</li>
+            <li>MySQL</li>
+            <li>Oracle Database</li>
+            <li>SQL</li>
+          </ul>
         </div>
-        <div>
-          <p class="tech-group-label">IT Platforms</p>
-          <div class="tech-tags">
-            <span class="tech-tag">Active Directory</span>
-            <span class="tech-tag">ServiceNow</span>
-            <span class="tech-tag">Epic</span>
-            <span class="tech-tag">Cerner</span>
-            <span class="tech-tag">Microsoft 365</span>
-            <span class="tech-tag">Google Workspace</span>
-          </div>
+
+        <div class="tech-group">
+          <p class="tech-group-title">Systems Administration &amp; IT Operations</p>
+          <ul class="tech-list">
+            <li>Microsoft Active Directory</li>
+            <li>ServiceNow</li>
+            <li>Microsoft Office Suite</li>
+            <li>Google Workspace</li>
+            <li>Customer Relationship Management (CRM) Systems</li>
+          </ul>
         </div>
+
+        <div class="tech-group">
+          <p class="tech-group-title">Healthcare Information Systems</p>
+          <ul class="tech-list">
+            <li>Epic Healthcare Systems</li>
+            <li>Cerner Healthcare Systems</li>
+          </ul>
+        </div>
+
+        <div class="tech-group">
+          <p class="tech-group-title">Reporting &amp; Documentation</p>
+          <ul class="tech-list">
+            <li>Data Analysis and Reporting</li>
+            <li>Technical Documentation</li>
+            <li>Data Entry and Records Management</li>
+            <li>Internet Research</li>
+            <li>Virtual Collaboration Platforms</li>
+          </ul>
+        </div>
+
       </div>
     </div>
+
+    <!-- ADDITIONAL QUALIFICATIONS -->
+    <div class="addl-section">
+      <p class="eyebrow">Additional Qualifications</p>
+      <div class="addl-grid">
+        <div class="addl-item">Expert in analysis and critical thinking</div>
+        <div class="addl-item">Able to work remotely with full autonomy and discipline</div>
+        <div class="addl-item">Effective multitasker across concurrent projects and priorities</div>
+        <div class="addl-item">Fast learner with new technologies and platforms</div>
+        <div class="addl-item">Experienced in handling sensitive and confidential data</div>
+        <div class="addl-item">Operational analysis and intelligence reporting using GIS and Mapping Technologies</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -786,7 +750,6 @@ footer a { color: var(--gold); text-decoration: none; }
     <h2 class="section-title">Get in <em>Touch</em></h2>
     <div class="title-rule" style="margin:1rem auto;"></div>
     <p class="contact-bio">Open to new opportunities in IT leadership, systems engineering, GIS consulting, and healthcare technology. Whether you have a project in mind or simply want to connect, I would be glad to hear from you.</p>
-
     <div class="contact-cards">
       <a class="contact-card" href="mailto:Babyjx3@outlook.com">
         <div class="cc-icon">&#9993;</div>
@@ -804,15 +767,13 @@ footer a { color: var(--gold); text-decoration: none; }
         <p class="cc-val green">Available for Work</p>
       </div>
     </div>
-
     <div class="contact-card-single">
-      <a class="contact-card" href="https://www.linkedin.com/in/ryan-arter-5a4998416/" target="_blank" rel="noopener">
+      <a class="contact-card" href="https://www.linkedin.com/in/ryan-arter-843ab6416/" target="_blank" rel="noopener">
         <div class="cc-icon">&#128279;</div>
         <p class="cc-label">LinkedIn</p>
-        <p class="cc-val">ryan-arter-5a4998416</p>
+        <p class="cc-val">ryan-arter-843ab6416</p>
       </a>
     </div>
-
     <div class="contact-btn-wrap">
       <a href="mailto:Babyjx3@outlook.com" class="btn-gold">Send a Message</a>
     </div>
@@ -827,15 +788,11 @@ footer a { color: var(--gold); text-decoration: none; }
 <a href="#about" class="scroll-indicator" title="Back to top">&#8593;</a>
 
 <script>
-// Starfield
 (function() {
   const canvas = document.getElementById('stars-canvas');
   const ctx = canvas.getContext('2d');
   let stars = [];
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   function init() {
     stars = [];
     for (let i = 0; i < 160; i++) {
@@ -857,7 +814,7 @@ footer a { color: var(--gold); text-decoration: none; }
       const alpha = s.o + Math.sin(t * s.speed * 60 + s.phase) * 0.15;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201,168,76,${Math.max(0.05, Math.min(0.7, alpha))})`;
+      ctx.fillStyle = 'rgba(201,168,76,' + Math.max(0.05, Math.min(0.7, alpha)) + ')';
       ctx.fill();
     });
     requestAnimationFrame(draw);
@@ -866,8 +823,6 @@ footer a { color: var(--gold); text-decoration: none; }
   resize(); init(); draw();
 })();
 
-// Nav active state
-const sections = document.querySelectorAll('section, #about-detail');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let current = '';
